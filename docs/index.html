@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#153f45" />
+    <title>正贤学习平台 · 网页练习室</title>
+    <link rel="icon" href="./icon.png" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./vendor/katex.min.js"></script>
+    <script defer src="./data/index.js"></script>
+    <script defer src="./scoring.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <div class="brand">
+          <img src="./icon.png" alt="" width="38" height="38" /><span
+            >正贤学习平台</span
+          >
+        </div>
+        <nav aria-label="学习工具">
+          <button data-nav="home" aria-current="page">练习室</button
+          ><button data-nav="wrong">
+            错题本 <span id="wrong-count">0</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section id="home">
+        <div class="heading">
+          <h1>今天练什么？</h1>
+          <p>选好科目和年级，开始一组练习。</p>
+        </div>
+        <div class="setup">
+          <fieldset>
+            <legend>科目</legend>
+            <div class="subjects">
+              <label
+                ><input type="radio" name="subject" value="1" checked /><span
+                  >语文</span
+                ></label
+              >
+              <label
+                ><input type="radio" name="subject" value="2" /><span
+                  >数学</span
+                ></label
+              >
+              <label
+                ><input type="radio" name="subject" value="3" /><span
+                  >英语</span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <div class="filters">
+            <label
+              >年级<select id="grade">
+                <option value="1">一年级</option>
+                <option value="2">二年级</option>
+                <option value="3">三年级</option>
+                <option value="4">四年级</option>
+                <option value="5">五年级</option>
+                <option value="6">六年级</option>
+              </select></label
+            >
+            <label
+              >题型<select id="type">
+                <option value="">全部题型</option>
+              </select></label
+            >
+            <label
+              >题量<select id="size">
+                <option value="5">5 道</option>
+                <option value="10" selected>10 道</option>
+                <option value="20">20 道</option>
+              </select></label
+            >
+          </div>
+          <p id="pool" class="meta" aria-live="polite"></p>
+          <div class="actions">
+            <button class="primary" id="start">开始练习</button
+            ><button id="paper">生成打印卷</button>
+          </div>
+        </div>
+      </section>
+      <section id="practice" hidden><div id="question-panel"></div></section>
+      <section id="wrong" hidden>
+        <div class="heading">
+          <h1>错题本</h1>
+          <p>答错的题会保存在这个浏览器，重做答对后自动移出。</p>
+        </div>
+        <div id="wrong-panel" class="card"></div>
+      </section>
+      <section id="results" hidden>
+        <div class="heading"><h1>练习完成</h1></div>
+        <div id="result-panel" class="card"></div>
+      </section>
+      <section id="paper-view" hidden>
+        <div class="heading screen">
+          <h1>打印预览</h1>
+          <p>打开系统打印窗口，可以打印或存为 PDF。</p>
+          <div class="actions">
+            <button class="primary" id="print">打印或存为 PDF</button
+            ><button data-nav="home">返回练习室</button
+            ><label class="toggle"
+              ><input
+                type="checkbox"
+                id="include-answers"
+                checked
+              />附参考答案</label
+            >
+          </div>
+        </div>
+        <article id="sheet"></article>
+      </section>
+      <p role="status" id="notice" class="notice"></p>
+      <noscript>请启用浏览器的 JavaScript 以载入题库。</noscript>
+    </main>
+    <footer>
+      <span>正贤学习平台 · 网页试用版</span
+      ><span
+        ><a href="https://github.com/132465798a/zx-study">原项目与题库</a> ·
+        <a href="./LICENSE.txt">MIT 许可</a></span
+      >
+    </footer>
+  </body>
+</html>
